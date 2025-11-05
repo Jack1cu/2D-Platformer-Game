@@ -5,12 +5,21 @@ using UnityEditor.U2D;
 
 public class PlayerC : MonoBehaviour
 {
-    public Animator animator;   
+    private Animator playerAnimator;
+    private BoxCollider2D boxCol;
+    private Vector2 boxColInitSize;
+    private Vector2 boxColInitOffset;
+
+    private void Start()
+    {
+        boxColInitSize = boxCol.size;
+        boxColInitOffset = boxCol.offset;
+    }
 
     private void Update()
     {
         float speed = Input.GetAxisRaw("Horizontal");
-        animator.SetFloat("Speed",Mathf.Abs(speed));
+        playerAnimator.SetFloat("Speed",Mathf.Abs(speed));
 
         Vector3 scale = transform.localScale;
         if (speed < 0)
@@ -22,5 +31,7 @@ public class PlayerC : MonoBehaviour
             scale.x = Mathf.Abs(scale.x);
         }
         transform.localScale = scale;
+
+
     }
 }
