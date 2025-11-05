@@ -125,85 +125,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7141679062914702187}
   m_PrefabAsset: {fileID: 0}
---- !u!50 &451908366
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 451908365}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!95 &451908367 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 9150777563689473497, guid: b9765a0cb6a1fcd419ec066df0f4cc4d,
     type: 3}
   m_PrefabInstance: {fileID: 7141679062914702187}
   m_PrefabAsset: {fileID: 0}
---- !u!61 &451908370
+--- !u!61 &451908370 stripped
 BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5772947670538802231, guid: b9765a0cb6a1fcd419ec066df0f4cc4d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7141679062914702187}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 451908365}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0.008013904, y: 0.9714405}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.42, y: 0.1}
-    oldSize: {x: 3.7534883, y: 2.8325582}
-    newSize: {x: 3.7534883, y: 2.8325582}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 0.5922524, y: 2.0837593}
-  m_EdgeRadius: 0
 --- !u!114 &451908371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,7 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 540589fa67c33a843b6ba8dc45284a0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerC
-  animator: {fileID: 451908367}
+  playerAnimator: {fileID: 451908367}
+  boxCol: {fileID: 451908370}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,6 +454,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5772947670538802231, guid: b9765a0cb6a1fcd419ec066df0f4cc4d,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.8832627
+      objectReference: {fileID: 0}
+    - target: {fileID: 5772947670538802231, guid: b9765a0cb6a1fcd419ec066df0f4cc4d,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.13749126
+      objectReference: {fileID: 0}
+    - target: {fileID: 5772947670538802231, guid: b9765a0cb6a1fcd419ec066df0f4cc4d,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.97144055
+      objectReference: {fileID: 0}
     - target: {fileID: 6683679670355247247, guid: b9765a0cb6a1fcd419ec066df0f4cc4d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -574,14 +523,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1292638795923388848, guid: b9765a0cb6a1fcd419ec066df0f4cc4d,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 451908366}
-    - targetCorrespondingSourceObject: {fileID: 1292638795923388848, guid: b9765a0cb6a1fcd419ec066df0f4cc4d,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 451908370}
     - targetCorrespondingSourceObject: {fileID: 1292638795923388848, guid: b9765a0cb6a1fcd419ec066df0f4cc4d,
         type: 3}
       insertIndex: -1

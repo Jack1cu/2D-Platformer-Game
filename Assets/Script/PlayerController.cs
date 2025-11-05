@@ -5,8 +5,9 @@ using UnityEditor.U2D;
 
 public class PlayerC : MonoBehaviour
 {
-    private Animator playerAnimator;
-    private BoxCollider2D boxCol;
+    [SerializeField] private Animator playerAnimator;
+    [SerializeField] private BoxCollider2D boxCol;
+
     private Vector2 boxColInitSize;
     private Vector2 boxColInitOffset;
 
@@ -33,5 +34,45 @@ public class PlayerC : MonoBehaviour
         transform.localScale = scale;
 
 
+        float verticalInput = Input.GetAxis("Vertical");
+        
+        PlayJumpAnimation(verticalInput);
+
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            Crouch(true);
+        }
+        else
+        {
+            Crouch(false);
+        }
+    }
+
+    public void Crouch(bool crouch)
+    {
+        if (crouch == true)
+        {
+            float offX = -0.1374913f;
+            float offY = 0.5796958f;
+            float sizeX = 0.8832627f;
+            float sizeY = 1.30027f;
+
+            boxCol.offset = new Vector2(offX, offY);
+            boxCol.size = new Vector2(sizeX, sizeY);
+        }
+        else
+        {
+            boxCol.size = boxColInitSize;
+            boxCol.offset = boxColInitOffset;
+        }
+        playerAnimator.SetBool("Crouch", crouch);
+    }
+
+    public void PlayJumpAnimation(float vertical)
+    {
+        if(vertical > 0)
+        {
+            playerAnimator.SetTrigger("Jump");
+        }
     }
 }
