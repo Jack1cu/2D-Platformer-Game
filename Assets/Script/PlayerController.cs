@@ -11,6 +11,8 @@ public class PlayerC : MonoBehaviour
     private Vector2 boxColInitSize;
     private Vector2 boxColInitOffset;
 
+    public float speed;
+
     private void Start()
     {
         boxColInitSize = boxCol.size;
@@ -19,23 +21,13 @@ public class PlayerC : MonoBehaviour
 
     private void Update()
     {
-        float speed = Input.GetAxisRaw("Horizontal");
-        playerAnimator.SetFloat("Speed",Mathf.Abs(speed));
-
-        Vector3 scale = transform.localScale;
-        if (speed < 0)
-        {
-            scale.x =-1f * Mathf.Abs(scale.x);
-        }
-        else if (speed > 0)
-        {
-            scale.x = Mathf.Abs(scale.x);
-        }
-        transform.localScale = scale;
-
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        playerAnimator.SetFloat("Speed", Mathf.Abs(horizontal));
+        MoveCharacter(horizontal);
+        PlayMovementAnimation(horizontal);
 
         float verticalInput = Input.GetAxis("Vertical");
-        
+
         PlayJumpAnimation(verticalInput);
 
         if (Input.GetKey(KeyCode.LeftControl))
@@ -46,6 +38,27 @@ public class PlayerC : MonoBehaviour
         {
             Crouch(false);
         }
+    }
+
+    private void MoveCharacter(float horizontal)
+    {
+        Vector3 position = transform.position;
+        position.x += horizontal * speed * Time.deltaTime;
+        transform.position = position;
+    }
+
+    private void PlayMovementAnimation(float horizontal)
+    {
+        Vector3 scale = transform.localScale;
+        if (horizontal < 0)
+        {
+            scale.x = -1f * Mathf.Abs(scale.x);
+        }
+        else if (horizontal > 0)
+        {
+            scale.x = Mathf.Abs(scale.x);
+        }
+        transform.localScale = scale;
     }
 
     public void Crouch(bool crouch)
