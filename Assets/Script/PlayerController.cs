@@ -7,6 +7,10 @@ public class PlayerC : MonoBehaviour
 {
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private BoxCollider2D boxCol;
+    [SerializeField] private Rigidbody2D rigidbodyPlayer;
+    [SerializeField] private float jumpForce;
+
+    private bool isGrounded = false;
 
     private Vector2 boxColInitSize;
     private Vector2 boxColInitOffset;
@@ -26,9 +30,8 @@ public class PlayerC : MonoBehaviour
         MoveCharacter(horizontal);
         PlayMovementAnimation(horizontal);
 
-        float verticalInput = Input.GetAxis("Vertical");
-
-        PlayJumpAnimation(verticalInput);
+        float vertical = Input.GetAxis("Vertical");
+        PlayJumpAnimation(vertical);
 
         if (Input.GetKey(KeyCode.LeftControl))
         {
@@ -81,11 +84,30 @@ public class PlayerC : MonoBehaviour
         playerAnimator.SetBool("Crouch", crouch);
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if(collision.transform.tag == "platform")
+        {
+            isGrounded = true;
+            playerAnimator.SetBool("Jump", false);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "platform")
+        {
+            isGrounded = false;
+        }
+    }
+
     public void PlayJumpAnimation(float vertical)
     {
-        if(vertical > 0)
+        if(vertical > 0 && isGrounded)
         {
-            playerAnimator.SetTrigger("Jump");
+            playerAnimator.SetBool("Jump", true);
+            rigidbodyPlayer.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            isGrounded = false;
         }
     }
 }
